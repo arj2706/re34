@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { login } from '../services/userService';
 
 function LoginPage() {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -22,6 +22,7 @@ function LoginPage() {
         const token = response.data.token;
         // Store the token in local storage or state for authentication
         // Redirect to the desired page
+        navigate('/'); // Example: Redirect to the home page
       } catch (error) {
         setFieldError('email', 'Invalid email or password');
         setFieldError('password', 'Invalid email or password');
